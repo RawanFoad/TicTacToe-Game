@@ -3,22 +3,22 @@ package TicTacToe;
 public class TicTacToeEngine extends TicTacToeEngineUtils {
 
 	public TicTacToeGame prepareGame() {
-		ticTacToeDisplay.displayMessage(TicTacToeConstants.WELCOME_MESSAGE);
+		ticTacToeDisplay.displayMessage(TicTacToeConstants.MESSAGE_WELCOME);
 
-		ticTacToeDisplay.displayMessage(TicTacToeConstants.ENTER_BOARD_SIZE);
+		ticTacToeDisplay.displayMessage(TicTacToeConstants.ENTER_SIZE_OF_BOARD);
 		TicTacToeBoard gameBoard = prepareBoard();
 		ticTacToeGame.setCurrentBoard(gameBoard);
 
 		ticTacToeDisplay
-				.displayMessage(TicTacToeConstants.ENTER_USER_PLAYER_SYMBOL);
-		TicTacToeUserPlayer gameUserPlayer = prepareUserPlayer(getSymbol(ticTacToeGame
-				.getCurrentComputerPlayer()));
+				.displayMessage(TicTacToeConstants.ENTER_SYMBOL_OF_USER_PLAYER);
+		String symbol = getSymbol(ticTacToeGame.getCurrentComputerPlayer());
+		TicTacToeUserPlayer gameUserPlayer = prepareUserPlayer(symbol);
 		ticTacToeGame.setCurrentUserPlayer(gameUserPlayer);
 
 		ticTacToeDisplay
-				.displayMessage(TicTacToeConstants.ENTER_COMPUTER_PLAYER_SYMBOL);
-		TicTacToeComputerPlayer gameComputerPlayer = prepareComputerPlayer(getSymbol(ticTacToeGame
-				.getCurrentUserPlayer()));
+				.displayMessage(TicTacToeConstants.ENTER_SYMBOL_OF_COMPUTER_PLAYER);
+		symbol = getSymbol(ticTacToeGame.getCurrentUserPlayer());
+		TicTacToeComputerPlayer gameComputerPlayer = prepareComputerPlayer(symbol);
 		ticTacToeGame.setCurrentComputerPlayer(gameComputerPlayer);
 
 		TicTacToePlayer ticTacToeCurrentPlayer = prepareCurrentPlayer(ticTacToeGame);
@@ -31,7 +31,9 @@ public class TicTacToeEngine extends TicTacToeEngineUtils {
 	}
 
 	public TicTacToeGame startOrContinueGame(TicTacToeGame ticTacToeGame) {
-		ticTacToeDisplay.displayWhoseTurn(ticTacToeGame.getCurrentPlayer());
+		String name = ticTacToeGame.getCurrentPlayer().getName();
+		String symbol = ticTacToeGame.getCurrentPlayer().getSymbol();
+		ticTacToeDisplay.displayWhoseTurn(name, symbol);
 
 		int[] currentPosition = getPosition(ticTacToeGame);
 		ticTacToeGame.setCurrentPosition(currentPosition);
@@ -69,10 +71,12 @@ public class TicTacToeEngine extends TicTacToeEngineUtils {
 
 	private void checkWinner(boolean isWinner, boolean isFull) {
 		if (isWinner) {
-			ticTacToeDisplay.displayWinner(ticTacToeGame.getCurrentPlayer());
+			String name = ticTacToeGame.getCurrentPlayer().getName();
+			ticTacToeDisplay.displayWinner(name);
 		} else {
 			if (isFull) {
-				ticTacToeDisplay.displayMessage(TicTacToeConstants.DRAW_GAME);
+				ticTacToeDisplay
+						.displayMessage(TicTacToeConstants.GAME_STATUS_DRAW);
 			}
 		}
 	}

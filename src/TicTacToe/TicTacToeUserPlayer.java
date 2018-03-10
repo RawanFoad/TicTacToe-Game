@@ -2,10 +2,11 @@ package TicTacToe;
 
 public class TicTacToeUserPlayer extends TicTacToePlayer {
 
-	TicTacToeDisplay ticTacToeDisplay;
+	private TicTacToeDisplay ticTacToeDisplay;
 
 	public TicTacToeUserPlayer() {
 		ticTacToeDisplay = new TicTacToeDisplay();
+		setName(TicTacToeConstants.NAME_OF_USER_PLAYER);
 	}
 
 	@Override
@@ -57,7 +58,9 @@ public class TicTacToeUserPlayer extends TicTacToePlayer {
 	}
 
 	private String invalidNextMove(int[] inputPosition, int size) {
-		return ticTacToeValidator.isWithinBoardSize(inputPosition, size) ? TicTacToeConstants.INVALID_POSITION_TAKEN
+		boolean isWithinBoardSize = ticTacToeValidator.isWithinBoardSize(
+				inputPosition, size);
+		return isWithinBoardSize ? TicTacToeConstants.INVALID_POSITION_TAKEN
 				: TicTacToeConstants.INVALID_POSITION_NOT_IN_RANGE;
 	}
 }

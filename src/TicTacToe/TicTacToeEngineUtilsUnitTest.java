@@ -14,7 +14,7 @@ public class TicTacToeEngineUtilsUnitTest {
 	public void testPrepareBoard() {// must enter 3
 		String[][] board = getTicTacToeBoard().getBoard();
 		TicTacToeDisplay ticTacToeDisplay = new TicTacToeDisplay();
-		ticTacToeDisplay.displayMessage(TicTacToeConstants.ENTER_BOARD_SIZE);
+		ticTacToeDisplay.displayMessage(TicTacToeConstants.ENTER_SIZE_OF_BOARD);
 		String[][] board2 = ticTacToeEngineUtils.prepareBoard().getBoard();
 		assertArrayEquals(board, board2);
 	}
@@ -49,7 +49,7 @@ public class TicTacToeEngineUtilsUnitTest {
 	public void testPrepareUserPlayer() {// must enter x or X
 		TicTacToeDisplay ticTacToeDisplay = new TicTacToeDisplay();
 		ticTacToeDisplay
-				.displayMessage(TicTacToeConstants.ENTER_USER_PLAYER_SYMBOL);
+				.displayMessage(TicTacToeConstants.ENTER_SYMBOL_OF_USER_PLAYER);
 		TicTacToeUserPlayer userPlayer = ticTacToeEngineUtils
 				.prepareUserPlayer(getTicTacToeComputerPlayer().getSymbol());
 		assertEquals(userPlayer.getSymbol(), "X");
@@ -59,7 +59,7 @@ public class TicTacToeEngineUtilsUnitTest {
 	public void testPrepareComputerPlayer() {// must enter o or O
 		TicTacToeDisplay ticTacToeDisplay = new TicTacToeDisplay();
 		ticTacToeDisplay
-				.displayMessage(TicTacToeConstants.ENTER_COMPUTER_PLAYER_SYMBOL);
+				.displayMessage(TicTacToeConstants.ENTER_SYMBOL_OF_COMPUTER_PLAYER);
 		TicTacToeComputerPlayer computerPlayer = ticTacToeEngineUtils
 				.prepareComputerPlayer(getTicTacToeUserPlayer().getSymbol());
 		assertEquals(computerPlayer.getSymbol(), "O");

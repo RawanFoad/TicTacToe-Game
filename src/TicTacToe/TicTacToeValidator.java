@@ -8,13 +8,13 @@ public class TicTacToeValidator {
 				&& isEmptyCell(board, inputPosition);
 	}
 
-	private boolean isEmptyCell(String[][] board, int[] inputPosition) {
-		return board[inputPosition[0]][inputPosition[1]].isEmpty();
-	}
-
 	public boolean isWithinBoardSize(int[] inputPosition, int size) {
 		return inputPosition[0] >= 0 && inputPosition[0] < size
 				&& inputPosition[1] >= 0 && inputPosition[1] < size;
+	}
+
+	private boolean isEmptyCell(String[][] board, int[] inputPosition) {
+		return board[inputPosition[0]][inputPosition[1]].isEmpty();
 	}
 
 }

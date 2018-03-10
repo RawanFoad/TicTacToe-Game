@@ -13,13 +13,9 @@ public class TicTacToeDisplay {
 		System.out.println(message);
 	}
 
-	public void displayInvalidMessage(String message) {
-		System.out.println(message);
-	}
-
-	public void displayWhoseTurn(TicTacToePlayer currentPlayer) {
-		displayMessage(currentPlayer.getName()
-				+ TicTacToeConstants.TURN_OF_PLAYER + currentPlayer.getSymbol());
+	public void displayWhoseTurn(String name, String symbol) {
+		displayMessage(name + TicTacToeConstants.MESSAGE_TURN_OF_PLAYER
+				+ symbol);
 	}
 
 	public void displayComputerPlayerPosition(int[] currentPosition) {
@@ -28,13 +24,32 @@ public class TicTacToeDisplay {
 	}
 
 	public void displayGame(String[][] board) {
-		displayMessage(TicTacToeConstants.START_GAME);
+		displayMessage(TicTacToeConstants.MESSAGE_START_GAME);
 		displayBoard(board);
 	}
 
-	public void displayWinner(TicTacToePlayer currentPlayer) {
-		displayMessage(currentPlayer.getName()
-				+ TicTacToeConstants.WINNER_PLAYER);
+	public void displayWinner(String name) {
+		displayMessage(name + TicTacToeConstants.GAME_STATUS_WINNER);
+	}
+
+	public void invalidBoardSize(String reason) {
+		displayMessage(reason + TicTacToeConstants.NEW_LINE
+				+ TicTacToeConstants.ENTER_SIZE_OF_BOARD);
+	}
+
+	public void invalidUserPlayerSymbol(String reason) {
+		displayMessage(reason + TicTacToeConstants.NEW_LINE
+				+ TicTacToeConstants.ENTER_SYMBOL_OF_USER_PLAYER);
+	}
+
+	public void invalidComputerPlayerSymbol(String reason) {
+		displayMessage(reason + TicTacToeConstants.NEW_LINE
+				+ TicTacToeConstants.ENTER_SYMBOL_OF_COMPUTER_PLAYER);
+	}
+
+	public void invalidUserNextMove(String reason) {
+		displayMessage(reason + TicTacToeConstants.NEW_LINE
+				+ TicTacToeConstants.ENTER_POSITION_OF_PLAYER);
 	}
 
 	public void displayBoard(String[][] board) {
@@ -43,7 +58,7 @@ public class TicTacToeDisplay {
 		for (int i = 0; i < board.length; i++) {
 			System.out.print("\t\t " + (i + 1));
 		}
-		System.out.println("\n");
+		System.out.println(TicTacToeConstants.NEW_LINE);
 
 		for (int i = 0; i < board.length; i++) {
 			System.out.print("\t" + (i + 1));
@@ -57,26 +72,6 @@ public class TicTacToeDisplay {
 		}
 
 		System.out.println("");
-	}
-
-	public void invalidBoardSize(String reason) {
-		displayInvalidMessage(TicTacToeConstants.INVALID_INPUT + reason);
-		displayInvalidMessage(TicTacToeConstants.ENTER_BOARD_SIZE);
-	}
-
-	public void invalidUserPlayerSymbol(String reason) {
-		displayInvalidMessage(TicTacToeConstants.INVALID_INPUT + reason);
-		displayInvalidMessage(TicTacToeConstants.ENTER_USER_PLAYER_SYMBOL);
-	}
-
-	public void invalidComputerPlayerSymbol(String reason) {
-		displayInvalidMessage(TicTacToeConstants.INVALID_INPUT + reason);
-		displayInvalidMessage(TicTacToeConstants.ENTER_COMPUTER_PLAYER_SYMBOL);
-	}
-
-	public void invalidUserNextMove(String reason) {
-		displayInvalidMessage(TicTacToeConstants.INVALID_INPUT + reason);
-		displayInvalidMessage(TicTacToeConstants.ENTER_PLAYER_POSITION);
 	}
 
 }

@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class TicTacToeComputerPlayer extends TicTacToePlayer {
 
+	public TicTacToeComputerPlayer() {
+		setName(TicTacToeConstants.NAME_OF_COMPUTER_PLAYER);
+	}
+
 	@Override
 	public int[] nextMove(TicTacToeBoard currentBoard) {
 		int size = currentBoard.getSize();

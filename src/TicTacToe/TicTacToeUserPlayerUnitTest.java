@@ -17,7 +17,7 @@ public class TicTacToeUserPlayerUnitTest {
 	public void testNextMove() {// must enter 2,2
 		TicTacToeDisplay ticTacToeDisplay = new TicTacToeDisplay();
 		ticTacToeDisplay
-				.displayMessage(TicTacToeConstants.ENTER_PLAYER_POSITION);
+				.displayMessage(TicTacToeConstants.ENTER_POSITION_OF_PLAYER);
 		int[] position = ticTacToeUserPlayer.nextMove(getTicTacToeBoard());
 		int[] position2 = { 1, 1 };
 		assertArrayEquals(position, position2);

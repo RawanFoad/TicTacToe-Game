@@ -57,18 +57,12 @@ public class TicTacToeEngineUtils {
 		boolean isOneChar = input.length() == 1;
 		if (isOneChar && !input.equalsIgnoreCase(excludedSybmol)) {
 			ticTacToeUserPlayer.setSymbol(input.toUpperCase());
-			ticTacToeUserPlayer.setName(TicTacToeConstants.USER_PLAYER_NAME);
 			ticTacToeUserPlayer.setComputer(false);
 		} else {
 			ticTacToeDisplay.invalidUserPlayerSymbol(invalidSymbol(isOneChar));
 			ticTacToeUserPlayer = prepareUserPlayer(excludedSybmol);
 		}
 		return ticTacToeUserPlayer;
-	}
-
-	private String invalidSymbol(boolean isOneChar) {
-		return isOneChar ? TicTacToeConstants.INVALID_SYMBOL_TAKEN
-				: TicTacToeConstants.INVALID_SYMBOL_NOT_ONE_CHAR;
 	}
 
 	protected TicTacToeComputerPlayer prepareComputerPlayer(
@@ -79,8 +73,6 @@ public class TicTacToeEngineUtils {
 		boolean isOneChar = input.length() == 1;
 		if (input.length() == 1 && !input.equalsIgnoreCase(excludedSybmol)) {
 			ticTacToeComputerPlayer.setSymbol(input.toUpperCase());
-			ticTacToeComputerPlayer
-					.setName(TicTacToeConstants.COMPUTER_PLAYER_NAME);
 			ticTacToeComputerPlayer.setComputer(true);
 		} else {
 			ticTacToeDisplay
@@ -106,17 +98,6 @@ public class TicTacToeEngineUtils {
 		return currentPlayer;
 	}
 
-	private TicTacToePlayer getFirstPlayer(TicTacToeGame ticTacToeGame) {
-		TicTacToePlayer currentPlayer;
-		Random random = new Random();
-		if (random.nextBoolean()) {
-			currentPlayer = ticTacToeGame.getCurrentUserPlayer();
-		} else {
-			currentPlayer = ticTacToeGame.getCurrentComputerPlayer();
-		}
-		return currentPlayer;
-	}
-
 	protected int[] getPosition(TicTacToeGame ticTacToeGame) {
 		int[] currentPosition;
 		TicTacToeBoard board = ticTacToeGame.getCurrentBoard();
@@ -126,7 +107,7 @@ public class TicTacToeEngineUtils {
 			ticTacToeDisplay.displayComputerPlayerPosition(currentPosition);
 		} else {
 			ticTacToeDisplay
-					.displayMessage(TicTacToeConstants.ENTER_PLAYER_POSITION);
+					.displayMessage(TicTacToeConstants.ENTER_POSITION_OF_PLAYER);
 			currentPosition = ticTacToeGame.getCurrentUserPlayer().nextMove(
 					board);
 		}
@@ -135,6 +116,22 @@ public class TicTacToeEngineUtils {
 
 	protected String getSymbol(TicTacToePlayer player) {
 		return player != null ? player.getSymbol() : TicTacToeConstants.EMPTY;
+	}
+
+	private String invalidSymbol(boolean isOneChar) {
+		return isOneChar ? TicTacToeConstants.INVALID_SYMBOL_TAKEN
+				: TicTacToeConstants.INVALID_SYMBOL_NOT_ONE_CHAR;
+	}
+
+	private TicTacToePlayer getFirstPlayer(TicTacToeGame ticTacToeGame) {
+		TicTacToePlayer currentPlayer;
+		Random random = new Random();
+		if (random.nextBoolean()) {
+			currentPlayer = ticTacToeGame.getCurrentUserPlayer();
+		} else {
+			currentPlayer = ticTacToeGame.getCurrentComputerPlayer();
+		}
+		return currentPlayer;
 	}
 
 }
