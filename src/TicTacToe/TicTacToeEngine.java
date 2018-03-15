@@ -21,8 +21,7 @@ public class TicTacToeEngine extends TicTacToeEngineUtils {
 		TicTacToeComputerPlayer gameComputerPlayer = prepareComputerPlayer(symbol);
 		ticTacToeGame.setCurrentComputerPlayer(gameComputerPlayer);
 
-		TicTacToePlayer ticTacToeCurrentPlayer = prepareCurrentPlayer(ticTacToeGame);
-		ticTacToeGame.setCurrentPlayer(ticTacToeCurrentPlayer);
+		prepareCurrentPlayer(ticTacToeGame);
 
 		ticTacToeDisplay
 				.displayGame(ticTacToeGame.getCurrentBoard().getBoard());
@@ -31,41 +30,26 @@ public class TicTacToeEngine extends TicTacToeEngineUtils {
 	}
 
 	public TicTacToeGame startOrContinueGame(TicTacToeGame ticTacToeGame) {
-		String name = ticTacToeGame.getCurrentPlayer().getName();
 		String symbol = ticTacToeGame.getCurrentPlayer().getSymbol();
+		String name = ticTacToeGame.getCurrentPlayer().getName();
 		ticTacToeDisplay.displayWhoseTurn(name, symbol);
 
-		int[] currentPosition = getPosition(ticTacToeGame);
-		ticTacToeGame.setCurrentPosition(currentPosition);
+		preparePosition(ticTacToeGame);
+		prepareBoard(ticTacToeGame);
 
-		TicTacToeBoard gameBoard = prepareBoard(ticTacToeGame);
-		ticTacToeGame.setCurrentBoard(gameBoard);
-
-		ticTacToeDisplay.displayBoard(ticTacToeGame.getCurrentBoard()
-				.getBoard());
-
-		ticTacToeGame = continueOrEndGame(ticTacToeGame);
-
-		return ticTacToeGame;
-	}
-
-	private TicTacToeGame continueOrEndGame(TicTacToeGame ticTacToeGame) {
 		String[][] board = ticTacToeGame.getCurrentBoard().getBoard();
-		int[] gamePosition = ticTacToeGame.getCurrentPosition();
-		String gameSymbol = ticTacToeGame.getCurrentPlayer().getSymbol();
+		ticTacToeDisplay.displayBoard(board);
 
-		boolean isWinner = ticTacToeRules.isWinner(board, gamePosition,
-				gameSymbol);
+		int[] currentPosition = ticTacToeGame.getCurrentPosition();
+		boolean isWinner = ticTacToeRules.isWinner(board, currentPosition,
+				symbol);
 		boolean isFull = ticTacToeRules.isFull(board);
-		boolean isEndGame = isWinner || isFull;
-
-		if (!isEndGame) {
-			TicTacToePlayer ticTacToeCurrentPlayer = prepareCurrentPlayer(ticTacToeGame);
-			ticTacToeGame.setCurrentPlayer(ticTacToeCurrentPlayer);
-
+		if (!ticTacToeRules.isEndGame(isWinner, isFull)) {
+			prepareCurrentPlayer(ticTacToeGame);
 			ticTacToeGame = startOrContinueGame(ticTacToeGame);
 		}
 		checkWinner(isWinner, isFull);
+
 		return ticTacToeGame;
 	}
 

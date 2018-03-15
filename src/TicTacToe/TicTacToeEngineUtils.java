@@ -37,7 +37,7 @@ public class TicTacToeEngineUtils {
 		return gameBoard;
 	}
 
-	protected TicTacToeBoard prepareBoard(TicTacToeGame ticTacToeGame) {
+	protected void prepareBoard(TicTacToeGame ticTacToeGame) {
 		TicTacToeBoard currentBoard = ticTacToeGame.getCurrentBoard();
 		int[] position = ticTacToeGame.getCurrentPosition();
 		TicTacToePlayer currentPlayer = ticTacToeGame.getCurrentPlayer();
@@ -47,7 +47,7 @@ public class TicTacToeEngineUtils {
 		String[][] board = currentBoard.getBoard();
 		board[position[0]][position[1]] = playerSymbol;
 		currentBoard.setBoard(board);
-		return currentBoard;
+		ticTacToeGame.setCurrentBoard(currentBoard);
 	}
 
 	protected TicTacToeUserPlayer prepareUserPlayer(String excludedSybmol) {
@@ -82,7 +82,7 @@ public class TicTacToeEngineUtils {
 		return ticTacToeComputerPlayer;
 	}
 
-	protected TicTacToePlayer prepareCurrentPlayer(TicTacToeGame ticTacToeGame) {
+	protected void prepareCurrentPlayer(TicTacToeGame ticTacToeGame) {
 		TicTacToePlayer currentPlayer;
 
 		if (ticTacToeGame.getCurrentPlayer() == null) {
@@ -94,11 +94,10 @@ public class TicTacToeEngineUtils {
 				currentPlayer = ticTacToeGame.getCurrentComputerPlayer();
 			}
 		}
-
-		return currentPlayer;
+		ticTacToeGame.setCurrentPlayer(currentPlayer);
 	}
 
-	protected int[] getPosition(TicTacToeGame ticTacToeGame) {
+	protected void preparePosition(TicTacToeGame ticTacToeGame) {
 		int[] currentPosition;
 		TicTacToeBoard board = ticTacToeGame.getCurrentBoard();
 		if (ticTacToeGame.getCurrentPlayer() instanceof TicTacToeComputerPlayer) {
@@ -111,7 +110,7 @@ public class TicTacToeEngineUtils {
 			currentPosition = ticTacToeGame.getCurrentUserPlayer().nextMove(
 					board);
 		}
-		return currentPosition;
+		ticTacToeGame.setCurrentPosition(currentPosition);
 	}
 
 	protected String getSymbol(TicTacToePlayer player) {

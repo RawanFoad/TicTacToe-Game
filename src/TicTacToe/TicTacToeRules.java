@@ -1,9 +1,14 @@
 package TicTacToe;
+
 public class TicTacToeRules {
 	private TicTacToeDisplay ticTacToeDisplay;
 
 	public TicTacToeRules() {
 		ticTacToeDisplay = new TicTacToeDisplay();
+	}
+
+	public boolean isEndGame(boolean isWinner, boolean isFull) {
+		return isWinner || isFull;
 	}
 
 	public boolean isFull(String[][] board) {

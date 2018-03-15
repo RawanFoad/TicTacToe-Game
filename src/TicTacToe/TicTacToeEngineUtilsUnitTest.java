@@ -21,9 +21,10 @@ public class TicTacToeEngineUtilsUnitTest {
 
 	@Test
 	public void testPosition() {// must enter 2,2
-		int[] position = ticTacToeEngineUtils.getPosition(getTicTacToeGame());
-		int[] position2 = { 1, 1 };
-		assertArrayEquals(position, position2);
+		TicTacToeGame game = getTicTacToeGame();
+		ticTacToeEngineUtils.preparePosition(game);
+		int[] position = { 1, 1 };
+		assertArrayEquals(game.getCurrentPosition(), position);
 	}
 
 	@Test
@@ -38,11 +39,11 @@ public class TicTacToeEngineUtilsUnitTest {
 
 	@Test
 	public void testPositionUpdateBoard() {
-		TicTacToeBoard ticTacToeBoard = ticTacToeEngineUtils
-				.prepareBoard(getUpdatedTicTacToeGame());
+		TicTacToeGame game = getUpdatedTicTacToeGame();
+		ticTacToeEngineUtils.prepareBoard(game);
 		String[][] board = new String[][] { { "X", "", "O" }, { "", "X", "O" },
 				{ "", "X", "" } };
-		assertArrayEquals(ticTacToeBoard.getBoard(), board);
+		assertArrayEquals(game.getCurrentBoard().getBoard(), board);
 	}
 
 	@Test
@@ -67,13 +68,14 @@ public class TicTacToeEngineUtilsUnitTest {
 
 	@Test
 	public void testPrepareCurrentPlayer() {
-		TicTacToePlayer player = ticTacToeEngineUtils
-				.prepareCurrentPlayer(getTicTacToeGame());
-		assertTrue(player instanceof TicTacToeComputerPlayer);
+		TicTacToeGame game = getTicTacToeGame();
+		ticTacToeEngineUtils.prepareCurrentPlayer(game);
+		assertTrue(game.getCurrentPlayer() instanceof TicTacToeComputerPlayer);
 
-		player = ticTacToeEngineUtils.prepareCurrentPlayer(getTicTacToeGame());
-		assertTrue(player instanceof TicTacToeUserPlayer
-				|| player instanceof TicTacToeComputerPlayer);
+		game = getTicTacToeGame();
+		ticTacToeEngineUtils.prepareCurrentPlayer(game);
+		assertTrue(game.getCurrentPlayer() instanceof TicTacToeUserPlayer
+				|| game.getCurrentPlayer() instanceof TicTacToeComputerPlayer);
 	}
 
 	private TicTacToeGame getTicTacToeGame() {

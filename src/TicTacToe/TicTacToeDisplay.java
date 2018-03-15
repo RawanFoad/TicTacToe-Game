@@ -53,25 +53,29 @@ public class TicTacToeDisplay {
 	}
 
 	public void displayBoard(String[][] board) {
-		System.out.println("");
-
+		displayMessage(TicTacToeConstants.EMPTY);
 		for (int i = 0; i < board.length; i++) {
 			System.out.print("\t\t " + (i + 1));
 		}
-		System.out.println(TicTacToeConstants.NEW_LINE);
 
+		displayMessage(TicTacToeConstants.NEW_LINE);
 		for (int i = 0; i < board.length; i++) {
 			System.out.print("\t" + (i + 1));
 			for (int j = 0; j < board.length; j++) {
 				System.out.print("\t" + board[i][j] + "\t|");
 			}
-			System.out.println("");
-			System.out
-					.println("\t\t----------------------------------------------------------------------------------------------------------------------------------------------------------------");
-			System.out.println("");
+
+			displayMessage(TicTacToeConstants.EMPTY);
+			System.out.print("\t\t---------");
+			for (int j = 1; j < board.length; j++) {
+				System.out.print("----------------");
+			}
+			displayMessage(TicTacToeConstants.EMPTY);
+
 		}
 
-		System.out.println("");
+		displayMessage(TicTacToeConstants.EMPTY);
+
 	}
 
 }
