@@ -1,5 +1,7 @@
 package TicTacToe;
 
+import TicTacToeController.TicTacToeController;
+
 public class TicTacToe {
 
 	private static TicTacToeController ticTacToeControllerInstance = null;

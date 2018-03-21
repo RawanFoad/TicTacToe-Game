@@ -32,8 +32,12 @@ Software design:
 		> Factory design pattern is used to here to make code extendable without changing the code.
 		> helps in having more than 1 player easily and in adding more congifurations for players if needed.
 
+Note:
+*****
+- Also the game is done using Maven to define project's structure, add any new dependencies quickly and test management (https://github.com/RawanFoad/TicTacToe-Game-Maven).
+
 To run the code:
 ****************
 1) Clone project make sure that Junit4 jar is added
 2) Compile
-3) Go to class TicTacToe.java & run
+3) Go to class TicTacToe.java & run as Java Application
